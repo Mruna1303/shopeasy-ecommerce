@@ -1,11 +1,6 @@
 
 import { useState, useEffect } from 'react'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link
-} from 'react-router-dom'
+import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 
 import Home from './pages/Home'
 import Products from './pages/Products'
@@ -73,7 +68,7 @@ function handleAddToCart(product) {
   )
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <nav>
         <h2>ShopEasy</h2>
         <div>
@@ -103,7 +98,7 @@ function handleAddToCart(product) {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
