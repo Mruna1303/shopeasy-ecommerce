@@ -11,52 +11,74 @@ function Cart({
   )
 
   return (
-    <div>
-      <h1>My Cart</h1>
+    <main className="cart-page">
+      <div className="cart-heading">
+        <p className="products-eyebrow">YOUR SHOPPING BAG</p>
+        <h1>My Cart 🛒</h1>
+        <p>Review your favourites before you check out.</p>
+      </div>
 
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <div className="cart-empty">
+          <span>🛍️</span>
+          <h2>Your cart is empty</h2>
+          <p>Looks like you haven't added anything yet.</p>
+        </div>
       ) : (
-        <div className="product-grid">
-          {cartItems.map(item => (
-            <div className="product-card" key={item.id}>
-              <img
-                src={item.image}
-                alt={item.title}
-                className="product-image"
-              />
+        <>
+          <div className="cart-items">
+            {cartItems.map(item => (
+              <div className="cart-item" key={item.id}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                />
 
-              <h3>{item.title}</h3>
+                <h3>{item.title}</h3>
 
-              <p className="price">
-                ₹{(item.price * 85).toFixed(0)}
-              </p>
+                <p className="cart-item-price">
+                  ₹{(item.price * 85).toFixed(0)}
+                </p>
 
-              <div>
-                <button onClick={() => onDecrease(item.id)}>
-                  −
-                </button>
+                <div className="quantity-controls">
+                  <button
+                    type="button"
+                    onClick={() => onDecrease(item.id)}
+                    aria-label="Decrease quantity"
+                  >
+                    −
+                  </button>
 
-                <span> Quantity: {item.quantity} </span>
+                  <span>Qty: {item.quantity}</span>
 
-                <button onClick={() => onIncrease(item.id)}>
-                  +
+                  <button
+                    type="button"
+                    onClick={() => onIncrease(item.id)}
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  className="remove-cart-button"
+                  onClick={() => onRemove(item.id)}
+                >
+                  Remove from Cart
                 </button>
               </div>
+            ))}
+          </div>
 
-              <button
-                className="add-button"
-                onClick={() => onRemove(item.id)}
-              >
-                Remove from Cart
-              </button>
-            </div>
-          ))}
-        </div>
+          <div className="cart-total">
+            <span>Total Amount</span>
+            <strong>₹{totalPrice.toFixed(0)}</strong>
+          </div>
+        </>
       )}
-
-      <h2>Total: ₹{totalPrice.toFixed(0)}</h2>
-    </div>
+    </main>
   )
 }
 

@@ -1,15 +1,25 @@
-function Navbar() {
-  return (
-    <nav>
-      <h2>ShopEasy</h2>
 
-      <div>
-        <a href="/">Home</a>
-        <a href="/products">Products</a>
-        <a href="/cart">Cart 🛒</a>
+import { Link } from 'react-router-dom'
+
+function Navbar({ cartCount, wishlistCount }) {
+  return (
+    <nav className="navbar">
+      <Link to="/" className="navbar-logo">
+        Shop<span>Easy</span>
+      </Link>
+
+      <div className="navbar-links">
+        <Link to="/">Home</Link>
+        <Link to="/products">Products</Link>
+        <Link to="/wishlist" className="wishlist-nav-link">
+          ♥ Wishlist ({wishlistCount})
+        </Link>
+        <Link to="/cart" className="cart-link">
+          🛒 Cart ({cartCount})
+        </Link>
       </div>
     </nav>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
